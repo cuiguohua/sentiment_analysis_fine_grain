@@ -134,7 +134,8 @@ class BertModel:
         self.input_representation = tf.add(tf.add(token_embeddings, self.segment_embeddings_lm),
                                            self.position_embeddings)  # [batch_size,sequence_length,embed_size]
 
-        # 2. repeat Nx times of building block( multi-head attention followed by Add & Norm; feed forward followed by Add & Norm)
+        # 2. repeat Nx times of building block
+        # ( multi-head attention followed by Add & Norm; feed forward followed by Add & Norm)
         encoder_class = Encoder(self.d_model, self.d_k, self.d_v, self.sequence_length, self.h, self.batch_size,
                                 self.num_layer, self.input_representation,
                                 self.input_representation, dropout_keep_prob=self.dropout_keep_prob,
